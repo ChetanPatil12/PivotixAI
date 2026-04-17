@@ -459,6 +459,7 @@ export default function App() {
                   ))}
                 </div>
                 <a href="#contact" className="btn-primary" style={{ background: p.featured ? C.accent : C.dark, width: "100%", justifyContent: "center" }}>Get Started →</a>
+                <p style={{ fontSize: 11, color: p.featured ? "rgba(255,255,255,0.4)" : C.muted, textAlign: "center", marginTop: 10 }}>2-month minimum commitment</p>
               </div>
             ))}
           </div>
@@ -479,6 +480,7 @@ export default function App() {
                   </div>
                 ))}
                 <a href="#contact" className="btn-primary" style={{ marginTop: 18, background: p.featured ? C.accent : C.dark, width: "100%", justifyContent: "center" }}>Get Started →</a>
+                <p style={{ fontSize: 11, color: p.featured ? "rgba(255,255,255,0.4)" : C.muted, textAlign: "center", marginTop: 10 }}>2-month minimum commitment</p>
               </div>
             ))}
           </div>
@@ -557,15 +559,42 @@ export default function App() {
             </div>
             <div className="team-cards" style={{ marginTop: 24 }}>
               {[
-                { init: "YP", name: "Your Partner's Name", role: "Business & Client Side — USA", desc: "Handles strategy, client relationships, and making sure the systems we build actually solve real business problems." },
-                { init: "YN", name: "Your Name", role: "Systems & Builds — India", desc: "Designs and builds every automation and AI system. Has built solutions for businesses across multiple industries." },
+                { init: "CT", name: "Christopher Titcombe", role: "Business & Client Side — USA", desc: "Handles strategy, client relationships, and making sure the systems we build actually solve real business problems.", linkedin: "https://www.linkedin.com/in/christophertitcombemetlife/", photo: "/team/christopher.jpeg" },
+                { init: "CP", name: "Chetan Patil", role: "Systems & Builds — India", desc: "Designs and builds every automation and AI system. Has built solutions for businesses across multiple industries.", linkedin: "https://www.linkedin.com/in/chetanpatil1213/", photo: "/team/chetan.jpeg" },
               ].map(m => (
                 <div key={m.name} style={{ display: "flex", gap: 14, padding: "20px", background: C.white, border: `1px solid ${C.border}` }}>
-                  <div style={{ width: 48, height: 48, flexShrink: 0, background: C.accent, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 700 }}>{m.init}</div>
+                  <div style={{ width: 48, height: 48, flexShrink: 0, borderRadius: "50%", overflow: "hidden", background: C.accent }}>
+                    <img
+                      src={m.photo}
+                      alt={m.name}
+                      width={48}
+                      height={48}
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                      onError={(e) => {
+                        const t = e.currentTarget;
+                        t.style.display = "none";
+                        if (t.parentElement) {
+                          t.parentElement.style.display = "flex";
+                          t.parentElement.style.alignItems = "center";
+                          t.parentElement.style.justifyContent = "center";
+                          t.parentElement.style.color = "#fff";
+                          t.parentElement.style.fontSize = "16px";
+                          t.parentElement.style.fontWeight = "700";
+                          t.parentElement.textContent = m.init;
+                        }
+                      }}
+                    />
+                  </div>
                   <div>
                     <div style={{ fontSize: 15, fontWeight: 700 }}>{m.name}</div>
                     <div style={{ fontSize: 12, fontWeight: 600, color: C.accent, marginBottom: 6, letterSpacing: "0.03em" }}>{m.role}</div>
-                    <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.65 }}>{m.desc}</div>
+                    <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.65, marginBottom: 10 }}>{m.desc}</div>
+                    <a href={m.linkedin} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, color: "#0A66C2" }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      LinkedIn
+                    </a>
                   </div>
                 </div>
               ))}
